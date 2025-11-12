@@ -66,7 +66,8 @@ public class Crypt {
 		/**
 		 * false key that will be sent to aion client in SM_KEY packet
 		 */
-		return (key ^ 0xCD92E4D9) + 0x3FF2CCDF; // 7.x
+		return (key ^ 0xCD92E451) + 0x3FF2CC87); // 4.x CLASSIC
+		//return (key ^ 0xCD92E4D9) + 0x3FF2CCDF; // 7.x
 	}
 
 	/**
@@ -109,6 +110,8 @@ public class Crypt {
 	 * @return obfuscated opcodec
 	 */
 	public static final int encodeOpcodec(int op) {
-		return (op + 0xD8) ^ 0xD9; // 7.5
+		return (op + 0x50) ^ 0x51; // 4.x CLASSIC (we need to test it!!!)
+		//return (op + 0xD8) ^ 0xD9; // 7.5
 	}
 }
+
