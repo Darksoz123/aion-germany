@@ -142,7 +142,7 @@ public class BinaryClass extends SimpleJavaFileObject {
 	 *            doesn't matter
 	 * @return class name
 	 */
-	public String inferBinaryName(Iterable<?> path) {
+	String inferBinaryName(Iterable<?> path) {
 		return name;
 	}
 
