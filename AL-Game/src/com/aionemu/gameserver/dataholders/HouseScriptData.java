@@ -48,9 +48,13 @@ import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import com.aionemu.gameserver.model.templates.housing.LBox;
-import com.sun.org.apache.xml.internal.serialize.OutputFormat;
-import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 /**
  * @author Rolandas
@@ -115,16 +119,16 @@ public class HouseScriptData {
 			try {
 				final Document document = parseXmlFile(unformattedXml);
 
-				OutputFormat format = new OutputFormat(document);
-				format.setIndenting(true);
-				format.setIndent(2);
-				format.setEncoding("UTF-16");
+				TransformerFactory tf = TransformerFactory.newInstance();
+				Transformer transformer = tf.newTransformer();
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+				transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-16");
 				Writer out = new StringWriter();
-				XMLSerializer serializer = new XMLSerializer(out, format);
-				serializer.serialize(document);
+				transformer.transform(new DOMSource(document), new StreamResult(out));
 				return out.toString();
 			}
-			catch (IOException e) {
+			catch (Exception e) {
 			}
 			return null;
 		}
