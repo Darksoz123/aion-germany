@@ -1,6 +1,6 @@
 @ECHO off
 TITLE Aion German - Login Server Console
-REM SET PATH="C:\Program Files\Java\jre1.8.0_121\bin"
+REM SET PATH="C:\Program Files\Java\jdk-11\bin"
 REM SET PATH="Type here your path to java jdk/jre (including bin folder)."
 REM NOTE: Remove tag REM from previous line.
 
@@ -12,7 +12,7 @@ echo Starting Aion German Login Server.
 echo.
 REM -------------------------------------
 REM Default parameters for a basic server.
-java -Xms8m -Xmx32m -server -cp ./libs/*;AL-Login.jar com.aionemu.loginserver.LoginServer
+java -Xms8m -Xmx32m -server --add-opens java.base/sun.misc=ALL-UNNAMED -cp ./libs/*;AL-Login.jar com.aionemu.loginserver.LoginServer
 REM
 REM -------------------------------------
 
