@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
 import com.aionemu.commons.scripting.CompilationResult;
 import com.aionemu.commons.scripting.ScriptClassLoader;
 import com.aionemu.commons.scripting.ScriptCompiler;
-import com.sun.tools.javac.api.JavacTool;
 
 /**
  * Wrapper for JavaCompiler api
@@ -69,12 +68,10 @@ public class ScriptCompilerImpl implements ScriptCompiler {
 	 *             if compiler is not available
 	 */
 	public ScriptCompilerImpl() {
-		this.javaCompiler = JavacTool.create();
+		this.javaCompiler = ToolProvider.getSystemJavaCompiler();
 
 		if (javaCompiler == null) {
-			if (ToolProvider.getSystemJavaCompiler() != null) {
-				throw new RuntimeException(new InstantiationException("JavaCompiler is not aviable."));
-			}
+			throw new RuntimeException(new InstantiationException("JavaCompiler is not available."));
 		}
 	}
 
@@ -180,7 +177,7 @@ public class ScriptCompilerImpl implements ScriptCompiler {
 	protected CompilationResult doCompilation(Iterable<JavaFileObject> compilationUnits) {
 		List<String> options = Arrays.asList("-encoding", "UTF-8", "-g");
 		DiagnosticListener<JavaFileObject> listener = new ErrorListener();
-		ClassFileManager manager = new ClassFileManager(JavacTool.create(), listener);
+		ClassFileManager manager = new ClassFileManager(javaCompiler, listener);
 		manager.setParentClassLoader(parentClassLoader);
 
 		if (libraries != null) {
