@@ -14,5 +14,9 @@
 	<classpathentry kind="lib" path="lib/swingx-0.9.1.jar"/>
 	<classpathentry kind="lib" path="lib/javolution-5.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jaxb-impl-2.3.9.jar"/>
+	<classpathentry kind="lib" path="lib/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/istack-commons-runtime-3.0.12.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

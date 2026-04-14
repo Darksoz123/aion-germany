@@ -9,9 +9,12 @@
 	<classpathentry kind="lib" path="libs/commons-lang-2.6.jar"/>
 	<classpathentry kind="lib" path="libs/guava-13.0.1.jar"/>
 	<classpathentry kind="lib" path="libs/javac-1.8.jar"/>
+	<classpathentry kind="lib" path="libs/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="libs/jaxb-impl-2.3.9.jar"/>
+	<classpathentry kind="lib" path="libs/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/istack-commons-runtime-3.0.12.jar"/>
 	<classpathentry kind="lib" path="libs/javassist-3.19.0-GA.jar"/>
 	<classpathentry kind="lib" path="libs/javolution-5.5.1.jar"/>
-	<classpathentry kind="lib" path="libs/jsr166-1.7.0.jar"/>
 	<classpathentry kind="lib" path="libs/logback-classic-1.0.9.jar"/>
 	<classpathentry kind="lib" path="libs/logback-core-1.0.9.jar"/>
 	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.34.jar"/>
