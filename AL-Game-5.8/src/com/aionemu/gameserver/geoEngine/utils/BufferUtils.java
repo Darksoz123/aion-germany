@@ -25,7 +25,6 @@ import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.WeakHashMap;
 
 import java.util.concurrent.ConcurrentHashMap;
 import com.aionemu.gameserver.geoEngine.math.Vector2f;
@@ -44,7 +43,7 @@ public final class BufferUtils {
 	// private static final Vector3f _tempVec3 = new Vector3f();
 	// private static final ColorRGBA _tempColor = new ColorRGBA();
 	//// -- TRACKER HASH -- ////
-	private static final Map<Buffer, Object> trackingHash = new ConcurrentHashMap<>(new WeakHashMap<Buffer, Object>());
+	private static final Map<Buffer, Object> trackingHash = new ConcurrentHashMap<>();
 	private static final Object ref = new Object();
 	private static final boolean trackDirectMemory = false;
 
