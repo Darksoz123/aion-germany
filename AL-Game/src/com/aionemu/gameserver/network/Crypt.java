@@ -66,7 +66,7 @@ public class Crypt {
 		/**
 		 * false key that will be sent to aion client in SM_KEY packet
 		 */
-		return (key ^ 0xCD92E451) + 0x3FF2CC87); // 4.x CLASSIC
+		return (key ^ 0xCD92E451) + 0x3FF2CC87; // 4.x CLASSIC
 		//return (key ^ 0xCD92E4D9) + 0x3FF2CCDF; // 7.x
 	}
 
