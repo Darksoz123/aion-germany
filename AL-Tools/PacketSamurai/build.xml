@@ -51,7 +51,7 @@
 		</fileset>
 	</copy>
 	<target name="compile" depends="init" description="Compile the source.">
-		<javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="1.7" target="1.7" includeantruntime="false">
+		<javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="11" target="11" includeantruntime="false">
 			<src path="${src}"/>
 			<classpath refid="classpath"/>
 		</javac>

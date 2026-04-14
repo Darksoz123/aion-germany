@@ -12,16 +12,7 @@
     <property name="build.dist" location="${build}/dist"/>
     <property name="build.dist.gs" location="${build.dist}/AL-Game"/>
 
-    <path id="bootclasspath">
-		<fileset dir="${lib}">
-			<include name="jsr166-1.7.0.jar"/>
-		</fileset>
-		<fileset dir="${jre}">
-			<include name="rt.jar"/>
-			<include name="jce.jar"/>
-		</fileset>
-	</path>
-	<path id="classpath">
+    <path id="classpath">
 		<fileset dir="${lib}">
 			<include name="*.jar"/>
 		</fileset>
@@ -37,11 +28,10 @@
     </target>
 
     <target name="compile" depends="init" description="Compile the source.">
-        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="1.7" target="1.7" includeantruntime="false">
+        <javac destdir="${build.classes}" optimize="on" debug="on" nowarn="off" source="11" target="11" includeantruntime="false">
 			<compilerarg value="-encoding"/>
 			<compilerarg value="UTF8"/>
 			<src path="${src}"/>
-			<bootclasspath refid="bootclasspath"/>
 			<classpath refid="classpath"/>
 		</javac>
     </target>
