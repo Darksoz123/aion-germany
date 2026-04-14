@@ -50,8 +50,8 @@ import com.aionemu.gameserver.model.templates.materials.MaterialTemplate;
 import com.aionemu.gameserver.world.zone.ZoneName;
 import com.aionemu.gameserver.world.zone.ZoneService;
 
-import sun.misc.Cleaner;
-import sun.nio.ch.DirectBuffer;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * @author Mr. Poke
@@ -291,9 +291,33 @@ public class GeoWorldLoader {
 	}
 
 	private static void destroyDirectByteBuffer(Buffer toBeDestroyed) {
-		Cleaner cleaner = ((DirectBuffer) toBeDestroyed).cleaner();
-		if (cleaner != null) {
-			cleaner.clean();
+		if (toBeDestroyed == null || !toBeDestroyed.isDirect()) {
+			return;
+		}
+		try {
+			// Java 9+: use sun.misc.Unsafe.invokeCleaner(ByteBuffer)
+			Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+			Field f = unsafeClass.getDeclaredField("theUnsafe");
+			f.setAccessible(true);
+			Object unsafe = f.get(null);
+			Method invokeCleaner = unsafeClass.getDeclaredMethod("invokeCleaner", ByteBuffer.class);
+			invokeCleaner.invoke(unsafe, toBeDestroyed);
+		}
+		catch (Exception ex) {
+			try {
+				// Java 8 fallback via reflection
+				Method cleanerMethod = toBeDestroyed.getClass().getMethod("cleaner");
+				cleanerMethod.setAccessible(true);
+				Object cleaner = cleanerMethod.invoke(toBeDestroyed);
+				if (cleaner != null) {
+					Method cleanMethod = cleaner.getClass().getMethod("clean");
+					cleanMethod.setAccessible(true);
+					cleanMethod.invoke(cleaner);
+				}
+			}
+			catch (Exception e) {
+				// silently ignore
+			}
 		}
 	}
 }
